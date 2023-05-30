@@ -8,11 +8,14 @@ df = pd.read_csv('/workspace/VerificaFlask/ds1880_studenti_scuola_secondaria_2gr
 def home():
     return render_template('index.html')
 
-
 @app.route('/Es1')
 def Es1():
     utente = request.args.get('scuola')
     info = df[df['DenominazioneScuola'] == utente ].to_html()
+    return render_template('risultato.html', tabella = info )
+
+@app.route('/Es2')
+def Es2():
     return render_template('risultato.html', tabella = info )
 
 if __name__ == '__main__':
